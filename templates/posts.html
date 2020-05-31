@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Posts</title>
+{% endblock %}
+
+{% block body %}
+    <br>
+    <div>
+        <h1 style="color:indianred;display:inline" >Posts : </h1>
+        <a class="btn btn-success" href="/posts/new" style="float:right"> + New Post </a>
+    </div>
+    <hr>
+    {% for post in posts %}
+    <br>
+    <h3>{{ post.title }}</h3>
+        <small style="color: #2ea742">Posted by : <b>{{ post.author }}</b> on {{ post.date_posted }}</small>
+    <br><br>
+    <p style="white-space: pre-wrap">{{ post.content }}</p>
+    <a class="btn btn-primary btn-sm" href="/posts/edit/{{ post.id }}">Edit</a>
+    <a class="btn btn-danger btn-sm" href="/posts/delete/{{ post.id }}" onclick="return confirm('Are you sure wanna delete Post : {{ post.title }}');" >Delete</a>
+    <br>
+    <hr>
+    {% endfor %}
+{% endblock %}
